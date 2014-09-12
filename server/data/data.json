@@ -1,0 +1,13 @@
+{
+	"questions": [
+		{
+			"question": "Vad är 1+1?",
+			"answer" : "2"
+		},
+		{
+			"question": "Vad är 2+2?",
+			"answer" : "4"
+		}
+
+	]
+}
