@@ -1,6 +1,6 @@
 'use strict';
 
-var quizAssignment = require('../lib/quiz-assignment.js');
+//var qa = require('../lib/quiz-assignment.js');
 
 /*
   ======== A Handy Little Nodeunit Reference ========
@@ -27,10 +27,12 @@ exports.quizAssignment = {
     // setup here
     done();
   },  
-  'getData function': function(test) {
-      test.expect(1);
-      test.equals(quizAssignment.getData(), true, "getData() should return true");
-     
+  'Check error handling on connections problems': function(test) {
+      test.expect(0);
+
+      //var callback = function(data) {data = data;};
+      //test.isFunction(qa.getData);
+
       test.done();
   }
 };

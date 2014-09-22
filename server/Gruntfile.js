@@ -7,12 +7,14 @@ module.exports = function (grunt) {
   require('load-grunt-tasks')(grunt);
   // Load the plugin that starts a node server
   grunt.loadNpmTasks('grunt-express-server');
+  grunt.loadNpmTasks('grunt-jasmine-node');
 
   // Project configuration.
   grunt.initConfig({
-    nodeunit: {
-      files: ['test/**/*_test.js']
-    },
+    pkg: grunt.file.readJSON('package.json'),
+    //nodeunit: {
+    //  files: ['test/**/*_test.js']
+    //},
     jshint: {
       options: {
         jshintrc: '.jshintrc',
@@ -23,11 +25,20 @@ module.exports = function (grunt) {
       },
       lib: {
         src: ['lib/**/*.js']
-      },
-      test: {
-        src: ['test/**/*.js']
       }
     },
+    jasmine_node: {
+            specNameMatcher: 'spec',
+            projectRoot: '.',
+            requirejs: false,
+            forceExit: true,
+            jUnit: {
+                report: false,
+                savePath : "./build/reports/jasmine/",
+                useDotNotation: true,
+                consolidate: true
+            }
+        },
     watch: {
       gruntfile: {
         files: '<%= jshint.gruntfile.src %>',
@@ -35,11 +46,14 @@ module.exports = function (grunt) {
       },
       lib: {
         files: '<%= jshint.lib.src %>',
-        tasks: ['jshint:lib', 'nodeunit']
+        tasks: ['jshint:lib']
       },
       test: {
-        files: '<%= jshint.test.src %>',
-        tasks: ['jshint:test', 'nodeunit']
+        files: ['spec/*.spec.js'],
+        tasks: ['jasmine_node'],
+        options: {
+          nospawn: true
+        }
       }
     },
     express: {
@@ -54,7 +68,9 @@ module.exports = function (grunt) {
     }
     });
 
+
+
   // Default task.
-  grunt.registerTask('default', ['jshint', 'nodeunit']);
+  grunt.registerTask('default', ['jasmine_node']);
 
 };

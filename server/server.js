@@ -8,10 +8,18 @@
 
 //var http = require('http');
 var app = require('./lib/quiz-assignment.js');
+var data;
+var onData = function(res) {
+	data = res;
+};
 
-//http.createServer(function(req, res) {
-app.getData();
-//	res.writeHead(200, {"Content-Type": "test/html"});
-//	res.end();
-//}).listen(3333);
-//console.log("Started server at port 3333");
+try {
+	app.getData(onData);
+}
+catch(err) {
+	console.log(err);
+}
+
+// Here we have fetch the data if first time from file if in memory from redis server
+
+
