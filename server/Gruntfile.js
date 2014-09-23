@@ -28,17 +28,27 @@ module.exports = function (grunt) {
       }
     },
     jasmine_node: {
-            specNameMatcher: 'spec',
-            projectRoot: '.',
-            requirejs: false,
-            forceExit: true,
-            jUnit: {
-                report: false,
-                savePath : "./build/reports/jasmine/",
-                useDotNotation: true,
-                consolidate: true
-            }
-        },
+      options: {
+        specFolders:[],
+        projectRoot:'',
+        forceExit: true,
+        match: '.',
+        matchall: false,
+        extensions: 'js',
+        specNameMatcher: 'spec',
+        coffee: true,
+        verbose: false,
+        noStack: false,
+        jUnit: {
+          report: false,
+          savePath : "./build/reports/jasmine/",
+          useDotNotation: true,
+          consolidate: true
+      },
+      growl: false
+      },
+      all: ['spec/'] // will be merged with the specFolders option and the projectRoot
+    },
     watch: {
       gruntfile: {
         files: '<%= jshint.gruntfile.src %>',
@@ -71,6 +81,6 @@ module.exports = function (grunt) {
 
 
   // Default task.
-  grunt.registerTask('default', ['jasmine_node']);
+  grunt.registerTask('default', ['jshint', 'jasmine_node']);
 
 };

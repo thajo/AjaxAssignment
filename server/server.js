@@ -7,10 +7,12 @@
 // POST - Will answer a question
 
 //var http = require('http');
-var app = require('./lib/quiz-assignment.js');
-var data;
+var app = require('./lib/redisShuffler.js');
 var onData = function(res) {
-	data = res;
+	
+	console.log(typeof res);
+	console.log(res instanceof Array);
+	console.log(res);
 };
 
 try {

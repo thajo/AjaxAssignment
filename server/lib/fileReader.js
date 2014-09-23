@@ -9,9 +9,8 @@ exports.readFile = function(url) {
 		var data = null;
 		try {
 			// try to read the file here - Dp it syncronus 
-			// 
-			data = fs.readFileSync(url);
-			data = JSON.parse(data);
+			// encode it for returning a correct string
+			data = fs.readFileSync(url, {encoding: 'utf-8'});
 			return data;
 		}
 		catch(err) {
