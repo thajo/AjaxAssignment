@@ -56,7 +56,7 @@ describe("Testing the data we getting from Redis", function() {
 		data.forEach(function(el){
 			
 			try {
-				// Must I stringify the object...bla
+				// Must I stringify the object...blagi
 				var data = JSON.parse( JSON.stringify(el) );
 				
 				if(data.question === undefined) {
