@@ -1,12 +1,10 @@
 /*
- * 	redisShuffler - This is a redis specific adapter for
- *	for handling data
- * 	
- *	The adapter should have an getData method who takes an callback
- *	This will be called when the data is OK or return false if somethiong goes wrong
- *
- * 	Copyright (c) 2014 John Häggerud
- * 	Licensed under the CC0 license.
+	redisShuffler - This is a redis specific adapter for
+	for handling data
+	The adapter should have an getData method who takes an callback
+	This will be called when the data is OK or return false if somethiong goes wrong
+	Copyright (c) 2014 John Häggerud
+	Licensed under the CC0 license.
  */
 
 'use strict';

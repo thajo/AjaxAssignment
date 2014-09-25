@@ -7,19 +7,26 @@
 //var redisShuffler = require('./redisShuffler.js');
 //var questions;
 var events = require('events');
-//var emitter = new EventEmitter();
-var utils = require('utils');
+var util = require('util');
+
+exports.debug_mode = false;
+var l =  function(message) {
+
+	if (!exports.debug_mode) { return; }
+    console.log(message);
+};
 
 // create an constructor to extends the EventEmitter functionallity
 // use this as an internal Object that will be return in a factory method
 function QuestHandler() {
 	this.questions = [];
-
 }
-utils.inherits(QuestHandler, events.EventEmitter);
+util.inherits(QuestHandler, events.EventEmitter);
+exports.QuestHandler = QuestHandler;
 
 QuestHandler.prototype.dataFetch = function(res) {
-	console.log("Im called att datafetch with res: " +res);
+	l("Im called att datafetch with res: " +res);
+	this.emit("onData", "this is data");
 };
 
 /**
@@ -32,21 +39,7 @@ QuestHandler.prototype.dataFetch = function(res) {
 exports.createQuestHandler = function() {
 	// Should create the internal Object and return it
 	var rqh = new QuestHandler();
-
 	return rqh;
 };
 
 
-
-/**
-	Should supply the right data for the right index
-	Should throw an error if the data is not ready
-**/
-/*exports.getQuestion = function(index) {
-	// Should controll if we have questions, if not read them
-	if(questions === undefined) {
-		emitter.emmit("error");
-		return;
-	}
-	return questions[index];
-};*/
