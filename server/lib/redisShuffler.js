@@ -1,9 +1,12 @@
 /*
- * quiz_assignment
- * user/repo
+ * 	redisShuffler - This is a redis specific adapter for
+ *	for handling data
+ * 	
+ *	The adapter should have an getData method who takes an callback
+ *	This will be called when the data is OK or return false if somethiong goes wrong
  *
- * Copyright (c) 2014 John Häggerud
- * Licensed under the CC0 license.
+ * 	Copyright (c) 2014 John Häggerud
+ * 	Licensed under the CC0 license.
  */
 
 'use strict';
@@ -25,7 +28,6 @@ var fr = require("./fileReader.js");
 
 
 exports.getData = function(callback) {
-	console.log("Getting data...");
 	// check if data is in cache otherwise reload the data
 	// using hashes
 

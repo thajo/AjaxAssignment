@@ -7,20 +7,10 @@
 // POST - Will answer a question
 
 //var http = require('http');
-var app = require('./lib/redisShuffler.js');
-var onData = function(res) {
-	
-	console.log(typeof res);
-	console.log(res instanceof Array);
-	console.log(res);
-};
+var app = require('./lib/questHandler.js');
 
-try {
-	app.getData(onData);
-}
-catch(err) {
-	console.log(err);
-}
+var r = app.createQuestHandler();
+r.dataFetch("hej hej");
 
 // Here we have fetch the data if first time from file if in memory from redis server
 
