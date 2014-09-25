@@ -4,11 +4,14 @@
  */
 
 'use strict';
+
+/** USED MODULES **/
 var redisShuffler = require('./redisShuffler.js');
-//var questions;
 var events = require('events');
 var util = require('util');
 
+/** DEBUG **/
+// could turn this on/off
 exports.debug_mode = false;
 function l(message) {
 
@@ -16,14 +19,18 @@ function l(message) {
     console.log(message);
 }
 
-// create an constructor to extends the EventEmitter functionallity
-// use this as an internal Object that will be return in a factory method
+
+
+/** IMPLEMENTATION **/
+
+// Create an constructor to extends the EventEmitter functionallity
+// Use this as an internal Object that will be return in a factory method
 function QuestHandler() {
 	l("Init the object");
 	this.questions = [];
 }
 util.inherits(QuestHandler, events.EventEmitter);
-exports.QuestHandler = QuestHandler;
+//exports.QuestHandler = QuestHandler;
 
 QuestHandler.prototype.dataFetch = function() {
 	var that = this;
