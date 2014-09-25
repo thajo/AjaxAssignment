@@ -17,13 +17,15 @@ describe("Check that we can get data\n", function() {
 
 
 	it("Should throw an exception telling that we havn´t got any data yet", function(){
-		var o = obj.createQuestHandler();
-		expect(o.getQuestion(1)).toThrow("Error: Don´t have any data yet");
+		var qh = obj.createQuestHandler();
+		// must put this in a nonymous fuction
+		expect(function(){qh.getQuestion(1);} ).toThrow(new Error("Don´t have any data yet"));
 	});
 
+	var o = obj.createQuestHandler();
 	// before the test we set upp the call
 	beforeEach(function() {
-		var o = obj.createQuestHandler();
+		//var o = obj.createQuestHandler();
 		o.on("onData", function() {
 			onData = true;
 		}); 
@@ -41,25 +43,30 @@ describe("Check that we can get data\n", function() {
 	});
 
 	it("Should return the number of Questions", function() {
-		var o = obj.createQuestHandler();
+		//var o = obj.createQuestHandler();
 		var nr = o.getNumberOfQuestions();
-		expect(nr).toBe(typeof "number");
-		expect(nr > 0).toBeTruthy();
+		expect(typeof nr).toBe("number");
+		expect(nr > 0).toBeTruthy();	
+		
+		
 	});
 
 	it("Should get an JSON object containing a Question and an Answer", function(){
-		var o = obj.createQuestHandler();
+	//	var o = obj.createQuestHandler();
 		if(o.getNumberOfQuestions() > 0) {
 			var data = o.getQuestion(1);
-			expect(data).toBeDefinied();
+
+			expect(data.question).toBeDefined();
 		}
 		
 
 	});
 
 	it("Should throw an error indicating we trying to get an index outside the array", function(){
-		var o = obj.createQuestHandler();
-		expect(o.getQuestion(o.getNumberOfQuestions() + 1)).toThrow("Error: Don´t have any data yet");
+	//	var o = obj.createQuestHandler();
+		expect(function(){ 
+				o.getQuestion(o.getNumberOfQuestions() + 1);
+			}).toThrow(new Error("Did call a question that doesn´t exists"));
 	});
 });
 
