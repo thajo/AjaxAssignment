@@ -18,14 +18,14 @@ describe("Check that we can get data\n", function() {
 
 	it("Should throw an exception telling that we havn´t got any data yet", function(){
 		var qh = obj.createQuestHandler();
-		// must put this in a nonymous fuction
+		// must put this in anonymous fuction
 		expect(function(){qh.getQuestion(1);} ).toThrow(new Error("Don´t have any data yet"));
 	});
 
 
 	// Use this object in the rest of the test
 	var o = obj.createQuestHandler();
-	
+
 	// before the test we set upp the call
 	beforeEach(function() {
 		//var o = obj.createQuestHandler();
