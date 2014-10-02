@@ -25,50 +25,39 @@ client.on("error", function() {
 var fr = require("./fileReader.js");
 
 
-exports.getData = function(callback) {
+exports.getData = function(callback, path) {
 	// check if data is in cache otherwise reload the data
 	// using hashes
 
 	client.get(HNAME, function (err, replies) {
+
 		if(replies) {
-			
+
 			JSON.parse(replies).questions.forEach(function(el) {
 				res.push(el);
 			});
-			//setInterval(function(){callback(res);}, 2300);
 			callback(res);
-				
 		}
 		else {
-			console.log("ERR " +err);
-			var data = fr.readFile("data/data.json");
+
+			path = path || "data/data.json";
+			console.log("I READ FROM FILE: " +path);
+			var data = fr.readFile(path);
 			if(!data) {
 				console.log("no data from file...");
 				callback(false);
+				return;
 			}
-			console.log("Set data into redis..." +data);
-			//console.log(data);
 			// handle it as JSON and itterate through the array
 			res = JSON.parse(data).questions;
-				// save all data as hashes {"question", 0, object with all the data}
-				// Should it goes in a irratable stucture or is this way with a 0 maybe easier?
+			// save all data as hashes {"question", 0, object with all the data}
+			// Should it goes in a irratable stucture or is this way with a 0 maybe easier?
+			console.log("Setting data");
 			client.set(HNAME, data);
-						// return an array with questions
+			// return an array with questions
 			callback(res);
 		}
-        
+
     });
-
-
-	/*var data = client.hgetall(HNAME, function(err, reply) {
-		if(reply) {
-			console.log("Got data from redis");
-			console.log(typeof reply); console.log(reply);
-			//callback(reply);
-		}
-		else {
-			d
-		}
-	});*/
 };
 

@@ -32,7 +32,9 @@
     "grunt-express-server": "^0.4.19",
     "grunt-jasmine-node": "^0.2.1",
     "jasmine-node": "^1.14.5",
-    "jasmine-reporters": "~1.0.0"
+    "jasmine-reporters": "~1.0.0",
+    "grunt-contrib-jasmine": "^0.8.0",
+    "grunt-jasmine-node-coverage": "^0.1.11"
   },
   "scripts": {
     "test": "grunt"

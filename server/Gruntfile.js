@@ -8,6 +8,7 @@ module.exports = function (grunt) {
   // Load the plugin that starts a node server
   grunt.loadNpmTasks('grunt-express-server');
   grunt.loadNpmTasks('grunt-jasmine-node');
+  grunt.loadNpmTasks('grunt-jasmine-node-coverage');
 
   // Project configuration.
   grunt.initConfig({
@@ -28,8 +29,11 @@ module.exports = function (grunt) {
       }
     },
     jasmine_node: {
+      coverage: {
+
+      },
       options: {
-        specFolders:[],
+        specFolders:['spec/'],
         projectRoot:'',
         forceExit: true,
         match: '.',
@@ -46,8 +50,9 @@ module.exports = function (grunt) {
           consolidate: true
       },
       growl: false
-      },
-      all: ['spec/'] // will be merged with the specFolders option and the projectRoot
+      }
+      //,
+      //all: ['spec/'] // will be merged with the specFolders option and the projectRoot
     },
     watch: {
       gruntfile: {

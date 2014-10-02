@@ -13,7 +13,7 @@ describe("Check the creation phase", function() {
 describe("Check that we can get data\n", function() {
 	var onData = false;
 	var obj = require('../lib/questHandler.js');
-	obj.debug_mode = true;
+	obj.debug_mode = false;
 
 
 	it("Should throw an exception telling that we havn´t got any data yet", function(){
@@ -31,7 +31,7 @@ describe("Check that we can get data\n", function() {
 		//var o = obj.createQuestHandler();
 		o.on("onData", function() {
 			onData = true;
-		}); 
+		});
 		o.fetchData();
 		// the test waits for teh returnstatement below to be true
 		// after 2000 ms we got an timeout
@@ -49,9 +49,9 @@ describe("Check that we can get data\n", function() {
 		//var o = obj.createQuestHandler();
 		var nr = o.getNumberOfQuestions();
 		expect(typeof nr).toBe("number");
-		expect(nr > 0).toBeTruthy();	
-		
-		
+		expect(nr > 0).toBeTruthy();
+
+
 	});
 
 	it("Should get an JSON object containing a Question and an Answer", function(){
@@ -62,13 +62,13 @@ describe("Check that we can get data\n", function() {
 				var data = o.getQuestion(i + 1);
 				expect(data.question).toBeDefined();
 			}
-			
+
 		}
 	});
 
 	it("Should throw an error indicating we trying to get an index outside the array", function(){
 	//	var o = obj.createQuestHandler();
-		expect(function(){ 
+		expect(function(){
 				o.getQuestion(o.getNumberOfQuestions() + 1);
 			}).toThrow(new Error("Did call a question that doesn´t exists"));
 	});
