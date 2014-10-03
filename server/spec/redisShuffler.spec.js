@@ -1,6 +1,6 @@
 
 
-describe("Testing the Redis connection", function() {
+describe("REDISSHUFFLER - Testing the Redis connection", function() {
 
 	var state = false;
 
@@ -30,7 +30,7 @@ describe("Testing the Redis connection", function() {
 
 
 
-describe("Testing calling redis on a bad URL:port", function() {
+describe("REDISSHUFFLER - Testing calling redis on a bad URL:port", function() {
 	var badCon = false;
 	beforeEach(function() {
 		var redis = require("redis");
@@ -50,7 +50,7 @@ describe("Testing calling redis on a bad URL:port", function() {
 });
 
 
-describe("Test the module with bad path call to datafile", function() {
+describe("REDISSHUFFLER - Test the module with bad path call to datafile", function() {
 	var r = require('../lib/redisShuffler.js');
 	var data;
 	var redis = require("redis");
@@ -78,15 +78,25 @@ describe("Test the module with bad path call to datafile", function() {
 });
 
 
-/*
-describe("Test to read a bad parsed json file", function(){
+
+
+
+
+describe("REDISSHUFFLER - Test to read a bad parsed json file", function(){
+	// conect to the redis server
+	var redis = require("redis");
+	var client = redis.createClient(6379, "127.0.0.1");
+	var HNAME = "questions";
 	var r = require('../lib/redisShuffler.js');
 	var data;
-	// before the test we set upp the call
+	client.del(HNAME);
+	// empty all data - could it be done?
 	beforeEach(function() {
+
 		r.getData(function(res) {
 			data = res;
-		});
+			client.end();
+		}, "./nojson.json");
 
 		// the test waits for teh returnstatement below to be true
 		// after 2000 ms we got an timeout
@@ -94,40 +104,46 @@ describe("Test to read a bad parsed json file", function(){
 			return data !== undefined;
 		}, 'Timeout getting data', 2000);
 	});
-
-
-	it("Should get an array from a call", function() {
-		expect(data instanceof Array).toBeTruthy();
+	// call get data
+	it("Should return false when there are bad data", function() {
+		expect(data).toBeFalsy();
 	});
 
-	it("Should hav e1 or more elemet in teh result array", function(){
-		expect(data.length > 0).toBeTruthy();
+});
+
+
+describe("REDISSHUFFLER - Test to read a jasonfile with bad key-values", function(){
+	// conect to the redis server
+	var redis = require("redis");
+	var client = redis.createClient(6379, "127.0.0.1");
+	var HNAME = "questions";
+	var r = require('../lib/redisShuffler.js');
+	var data;
+	client.del(HNAME);
+	// empty all data - could it be done?
+	beforeEach(function() {
+
+		r.getData(function(res) {
+			data = res;
+			client.end();
+		}, "./baddata.json");
+
+		// the test waits for teh returnstatement below to be true
+		// after 2000 ms we got an timeout
+		waitsFor(function() {
+			return data !== undefined;
+		}, 'Timeout getting data', 2000);
 	});
-
-	it("All elements should include JSON with question and answer", function() {
-		var status = true;
-		//console.log(data);
-		data.forEach(function(el){
-
-				var data = JSON.parse( JSON.stringify(el) );
-				status = (data.question !== undefined ) && (data.answer !== undefined);
-
-		});
-
-		expect(status).toBeTruthy();
+	// call get data
+	it("Should return false when there are bad data", function() {
+		expect(data).toBeFalsy();
 	});
 });
-*/
-/*
-describe("Test to read a jasonfile with bad key-values", function(){
-
-})
-*/
 
 
 
 
-describe("Testing the data we getting from Redis (cached data)", function() {
+describe("REDISSHUFFLER - Testing the data we getting from Redis (cached data)", function() {
 
 	var r = require('../lib/redisShuffler.js');
 	var data;
@@ -176,7 +192,7 @@ describe("Testing the data we getting from Redis (cached data)", function() {
 });
 
 
-describe ("Testing getting the data (no cache)", function() {
+describe ("REDISSHUFFLER - Testing getting the data (no cache)", function() {
 
 	// conect to the redis server
 	var redis = require("redis");

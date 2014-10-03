@@ -14,6 +14,11 @@ describe("Calling FileReader --> ", function() {
 		expect(res).toBeFalsy();
 	});
 
+	it("Not a .json should return false", function() {
+		var res = fr.readFile("./data/data.xml");
+		expect(res).toBeFalsy();
+	});
+
 	it("Correct path should return a string", function() {
 		var res = fr.readFile("./data/data.json");
 		//console.log(res); console.log(typeof res);

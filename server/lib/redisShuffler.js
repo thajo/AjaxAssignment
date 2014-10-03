@@ -1,6 +1,6 @@
 /*
 	redisShuffler - This is a redis specific adapter for
-	for handling data
+	for handling data and validate the dataformat
 	The adapter should have an getData method who takes an callback
 	This will be called when the data is OK or return false if somethiong goes wrong
 	Copyright (c) 2014 John Häggerud
@@ -25,7 +25,7 @@ client.on("error", function() {
 var fr = require("./fileReader.js");
 
 
-exports.getData = function(callback, path, redisURL, redisPort) {
+exports.getData = function(callback, path) {
 	// check if data is in cache otherwise reload the data
 	// using hashes
 	client.get(HNAME, function (err, replies) {
@@ -40,18 +40,15 @@ exports.getData = function(callback, path, redisURL, redisPort) {
 		else {
 
 			path = path || "data/data.json";
-			console.log("I READ FROM FILE: " +path);
 			var data = fr.readFile(path);
 			if(!data) {
-				console.log("no data from file...");
 				callback(false);
 				return;
 			}
-			// handle it as JSON and itterate through the array
+			// parse it as JSON and return the questions array
 			res = JSON.parse(data).questions;
 			// save all data as hashes {"question", 0, object with all the data}
 			// Should it goes in a irratable stucture or is this way with a 0 maybe easier?
-			console.log("Setting data");
 			client.set(HNAME, data);
 			// return an array with questions
 			callback(res);

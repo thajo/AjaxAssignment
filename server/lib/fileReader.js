@@ -40,8 +40,10 @@
 		// This is a nodejs module, cant run in browser
 	}
 
-	// http://stackoverflow.com/questions/280634/endswith-in-javascript
+
+	/* istanbul ignore else */
 	if (typeof String.prototype.endsWith !== 'function') {
+		// http://stackoverflow.com/questions/280634/endswith-in-javascript
 		String.prototype.endsWith = function(suffix) {
 			return this.indexOf(suffix, this.length - suffix.length) !== -1;
 		};
