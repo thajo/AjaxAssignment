@@ -40,6 +40,8 @@
     "test": "grunt"
   },
   "dependencies": {
-    "redis": "^0.12.1"
+    "redis": "^0.12.1",
+    "grunt-jasmine-node-coverage": "^0.1.11",
+    "express": "4.x"
   }
 }

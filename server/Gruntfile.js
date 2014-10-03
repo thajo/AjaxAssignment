@@ -29,8 +29,8 @@ module.exports = function (grunt) {
       }
     },
     jasmine_node: {
-      coverage: {
-
+      coverage: { //https://github.com/paazmaya/grunt-jasmine-node-coverage/tree/multi-grunting#optionsspecfolders
+        excludes: ['lib/l.js']
       },
       options: {
         specFolders:['spec/'],
