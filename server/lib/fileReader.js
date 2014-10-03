@@ -20,14 +20,12 @@
 				return data;
 			}
 			catch(err) {
-				//console.log(err);
 				return false;
 			}
 		}
 		else {
 			return false;
 		}
-
 	};
 
 	// Export the readFile function for **Node.js**, with
@@ -39,7 +37,7 @@
 		}
 		exports.readFile= readFile;
 	} else {
-		console.log("This is a node.js module - could not run in browser");
+		// This is a nodejs module, cant run in browser
 	}
 
 	// http://stackoverflow.com/questions/280634/endswith-in-javascript

@@ -56,14 +56,15 @@ describe("Check that we can get data\n", function() {
 
 	it("Should get an JSON object containing a Question and an Answer", function(){
 	//	var o = obj.createQuestHandler();
-		if(o.getNumberOfQuestions() > 0) {
-			var l = o.getNumberOfQuestions();
-			for(var i = 0; i < l; i++) {
-				var data = o.getQuestion(i + 1);
-				expect(data.question).toBeDefined();
-			}
+		//if(o.getNumberOfQuestions() > 0) { // DONT WRITE TESTS IN TEST
 
+		var l = o.getNumberOfQuestions();
+		for(var i = 0; i < l; i++) {
+			var data = o.getQuestion(i + 1);
+			expect(data.question).toBeDefined();
 		}
+
+		//}
 	});
 
 	it("Should throw an error indicating we trying to get an index outside the array", function(){

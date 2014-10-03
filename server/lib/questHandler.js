@@ -38,9 +38,11 @@
 	QuestHandler.prototype.fetchData = function() {
 		var currentObject = this;
 		redisShuffler.getData(function(data){
-			if(!data) {
-				throw new Error("Don´t have any data yet");
-			}
+
+			// this should be tested
+			/*if(!data) {
+				throw new Error("No data..yet");
+			}*/
 
 			currentObject.questions = data;
 			currentObject.emit("onData");

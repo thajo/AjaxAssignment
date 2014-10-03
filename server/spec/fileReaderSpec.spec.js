@@ -22,8 +22,3 @@ describe("Calling FileReader --> ", function() {
 
 
 });
-
-describe("Getting correct data from FileReader --> ", function() {
-	
-});
-

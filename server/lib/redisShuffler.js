@@ -25,10 +25,9 @@ client.on("error", function() {
 var fr = require("./fileReader.js");
 
 
-exports.getData = function(callback, path) {
+exports.getData = function(callback, path, redisURL, redisPort) {
 	// check if data is in cache otherwise reload the data
 	// using hashes
-
 	client.get(HNAME, function (err, replies) {
 
 		if(replies) {
