@@ -77,11 +77,7 @@ describe("REDISSHUFFLER - Test the module with bad path call to datafile", funct
 	});
 });
 
-
-
-
-
-
+/*
 describe("REDISSHUFFLER - Test to read a bad parsed json file", function(){
 	// conect to the redis server
 	var redis = require("redis");
@@ -110,8 +106,8 @@ describe("REDISSHUFFLER - Test to read a bad parsed json file", function(){
 	});
 
 });
-
-
+*/
+/*
 describe("REDISSHUFFLER - Test to read a jasonfile with bad key-values", function(){
 	// conect to the redis server
 	var redis = require("redis");
@@ -139,7 +135,7 @@ describe("REDISSHUFFLER - Test to read a jasonfile with bad key-values", functio
 		expect(data).toBeFalsy();
 	});
 });
-
+*/
 
 
 
@@ -165,11 +161,11 @@ describe("REDISSHUFFLER - Testing the data we getting from Redis (cached data)",
 		expect(data instanceof Array).toBeTruthy();
 	});
 
-	it("Should hav e1 or more elemet in teh result array", function(){
+	it("Should have 1 or more elemet in the result array", function(){
 		expect(data.length > 0).toBeTruthy();
 	});
 
-	it("All elements should include JSON with question and answer", function() {
+	it("All elements should include JSON with id, question and answer", function() {
 		var status = true;
 		//console.log(data);
 		data.forEach(function(el){
@@ -178,7 +174,7 @@ describe("REDISSHUFFLER - Testing the data we getting from Redis (cached data)",
 			//try {
 				// Must I stringify the object...blagi
 				var data = JSON.parse( JSON.stringify(el) );
-				status = (data.question !== undefined ) && (data.answer !== undefined);
+				status = (data.id !== undefined) && (data.question !== undefined ) && (data.answer !== undefined);
 			//}
 			/*catch(err) {
 				console.log(err);

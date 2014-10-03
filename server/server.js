@@ -9,27 +9,28 @@
 //var http = require('http');
 
 
-// add the simple log module
-var l = require("./lib/l.js");
-// set the debug flag
-l.debug_mode = true;
-// updat ethe variable l to the log function
-l = l.l;
+// call the packages we need
+var express    = require('express'); 		// call express
+var app        = express(); 				// define our app using express
+var bodyParser = require('body-parser');
 
-var express = require("express");
-var app = express();
+// configure app to use bodyParser()
+// this will let us get the data from a POST
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
-
+var router = express.Router();
 
 var r = require('./lib/questHandler.js').createQuestHandler();
 r.on("onData", function() {
-	app.get("/question/:id", function(req, res) {
+	router.get("/question/:id", function(req, res) {
 		var id = req.params.id;
 		var question;
 		try {
 			question = r.getQuestion(id);
 		}
 		catch (err){
+			console.log(err);
 			res.status(400); // Should be 404, but for this assignment we indicate a call to a question not found
 			res.end();
 			return;
@@ -40,25 +41,57 @@ r.on("onData", function() {
 
 		// Send back the question
 		question.nextURL = "/answer/" +id;
-		question.message = "You got your question. Now send me the answer via HTTP POST to the nextURL";
+		question.message = "You got your question! Now send me the answer via HTTP POST to the nextURL";
 
 		res.send(question);
 	});
 
-	app.get('*', function(req, res){
-  		res.status(404);
+	router.get("/answer/:id", function(req, res) {
+		res.status(405).send('{"message" : "This URL only accept POST"}');
+		res.end();
+	});
+//http://scotch.io/tutorials/javascript/build-a-restful-api-using-node-and-express-4
+	router.route("/answer/:id").post(function(req, res) {
+		var id = req.params.id;
+		var question;
+
+
+		try {
+			question = r.getQuestion(id);
+		}
+		catch (err){
+			res.status(400); // Should be 404, but for this assignment we indicate a call to a question not found
+			res.end();
+			return;
+		}
+		if(!req.body) {
+			res.status(400).send({"message" : "Missing the answer in json-format"});
+			res.end();
+			return;
+		}
+		else {
+			/*var mess = JSON.parse(req.body);
+			if(question.answer === mess.answer) {
+				// Should add function to get the next question
+				res.status(200).send({"nextURL" : "/question/" +id+1});
+			}
+			*/
+		}
+
 	});
 
 
-	app.listen(8000);
+
+	router.get('*', function(req, res){
+  		res.status(404);
+  		res.end();
+	});
+
+	app.use('/', router);
+	app.listen(8000); console.log("Server listen on port 8000 in dev MODE");
 });
 r.fetchData();
 
-
-
-
-
-l("WELCOME DEBUG MODE IS ON");
 
 // Using express for watching stuff
 

@@ -10,7 +10,7 @@
 	var redisShuffler = require('./redisShuffler.js');
 	var events = require('events');
 	var util = require('util');
-	var l = require('./l.js').l;
+	//var l = require('./l.js').l;
 
 	/** IMPLEMENTATION **/
 
@@ -57,22 +57,37 @@
 		return this.questions.length;
 	};
 
+	QuestHandler.prototype.getNextQuestion = function(id) {
+		var len = this.questions.length -1; // dont check the last
+
+		for(var i = 0; i < len; i++) {
+			if(Number(this.questions[i].id === Number(id))) {
+				return this.questions[i+1];
+			}
+		}
+		return false;
+	};
+
 	/*
 		get a specific question. The number parameter is
 		the number, not the index (hide the implementation)
 	*/
-	QuestHandler.prototype.getQuestion = function(number) {
-		l("Get question called with number: " +number);
+	QuestHandler.prototype.getQuestion = function(id) {
 		var len = this.questions.length;
-
+		//l(len);
 		// TODO refactor
-		if(len === 0) {
+		if(len < 1) {
 			throw new Error("Don´t have any data yet");
 		}
-		if((number - 1) >= len) {
-			throw new Error("Did call a question that doesn´t exists");
+		// check if we have a question
+		for(var i = 0; i < len; i++) {
+
+			if(Number(this.questions[i].id) === Number(id)) {
+
+				return this.questions[i];
+			}
 		}
-		return JSON.parse(JSON.stringify(this.questions[number-1]));
+		throw new Error("Did call a question that doesn´t exists");
 	};
 
 

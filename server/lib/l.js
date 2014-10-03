@@ -3,7 +3,7 @@
 (function(){
 	/** DEBUG **/
 	// could turn this on/off
-	exports.debug_mode = false;
+	exports.debug_mode = true;
 
 	exports.l = function(mess) {
 		if(!exports.debug_mode) {return;}

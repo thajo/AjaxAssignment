@@ -1,10 +1,17 @@
 {
 	"questions": [
 		{
+			"id" : 1,
 			"question": "Vad är 1+1?",
 			"answer" : "2"
 		},
 		{
+			"id" : 321,
+			"question": "Vad är 2+2?",
+			"answer" : "4"
+		},
+		{
+			"id" : 3242,
 			"question": "Vad är 2+2?",
 			"answer" : "4"
 		}

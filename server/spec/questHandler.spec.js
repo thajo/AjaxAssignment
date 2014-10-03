@@ -1,5 +1,5 @@
 
-describe("Check the creation phase", function() {
+describe("QUESTHANDLER -- Check the creation phase", function() {
 
 	var obj = require('../lib/questHandler.js');
 
@@ -10,10 +10,9 @@ describe("Check the creation phase", function() {
 });
 
 
-describe("Check that we can get data\n", function() {
+describe("QUESTHANDLER -- Check that we can get data\n", function() {
 	var onData = false;
 	var obj = require('../lib/questHandler.js');
-	obj.debug_mode = false;
 
 
 	it("Should throw an exception telling that we havn´t got any data yet", function(){
@@ -58,10 +57,17 @@ describe("Check that we can get data\n", function() {
 	//	var o = obj.createQuestHandler();
 		//if(o.getNumberOfQuestions() > 0) { // DONT WRITE TESTS IN TEST
 
-		var l = o.getNumberOfQuestions();
-		for(var i = 0; i < l; i++) {
-			var data = o.getQuestion(i + 1);
-			expect(data.question).toBeDefined();
+		// Get the first question
+		var obj = o.getQuestion(1);
+
+		// While not false
+		while(obj) {
+			// check that all data is defined
+			expect(obj.question).toBeDefined();
+			expect(obj.answer).toBeDefined();
+			expect(obj.id).toBeDefined();
+			obj = o.getNextQuestion(obj.id);
+
 		}
 
 		//}
