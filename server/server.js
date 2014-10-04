@@ -27,7 +27,8 @@ r.on("onData", function() {
 		var id = req.params.id;
 		var question;
 		try {
-			question = r.getQuestion(id);
+			question = JSON.stringify(r.getQuestion(id)); // must make a copy since we want to delete the answer
+			question = JSON.parse(question);
 		}
 		catch (err){
 			console.log(err);
@@ -57,7 +58,7 @@ r.on("onData", function() {
 
 		try {
 			question = r.getQuestion(id);
-			console.log(JSON.stringify(question));
+			console.log("In post: " +JSON.stringify(question));
 		}
 		catch (err){
 			res.status(400).send({"message" : "Bad URL - no question found on that URI"}); // Should be 404, but for this assignment we indicate a call to a question not found

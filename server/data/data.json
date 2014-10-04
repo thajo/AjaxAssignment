@@ -11,9 +11,19 @@
 			"answer" : "4"
 		},
 		{
-			"id" : 3242,
-			"question": "Vad är 2+2?",
-			"answer" : "4"
+			"id" : 32456,
+			"question": "Vad är 4+2?",
+			"answer" : "6"
+		},
+		{
+			"id" : 32,
+			"question": "Vad är 2+8?",
+			"answer" : "10"
+		},
+		{
+			"id" : 512,
+			"question": "Vad är livet?",
+			"answer" : "stressigt"
 		}
 
 	]
