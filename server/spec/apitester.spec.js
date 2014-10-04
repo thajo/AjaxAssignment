@@ -35,7 +35,7 @@ describe("APITESTER -- test calling the service", function(){
 	it("When wrong answer is submitted server should return 400 and a message", function() {
 		request.post({
 		  url:     base + 'answer/1',
-		  body:    '{"answer" : "2"}',
+		  body:    '{"answer" : "1"}',
 		  headers: {
 		    'Content-Type': 'application/json'
 		  }
@@ -47,6 +47,19 @@ describe("APITESTER -- test calling the service", function(){
 	});
 
 	it("When correct answer is submitted we should get a 200 and a nextURL", function() {
+		request.post({
+		  url:     base + 'answer/1',
+		  body:    '{"answer" : "2"}',
+		  headers: {
+		    'Content-Type': 'application/json'
+		  }
+		}, function(error, response, body){
+			expect(response.statusCode).toBe(200);
+			var mess = JSON.parse(body).message;
+			expect(mess).toContain("Correct answer");
+			var next = JSON.parse(body).nextURL;
+			expect(next).toBeDefined();
 
+		});
 	});
 });
