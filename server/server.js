@@ -21,6 +21,7 @@ app.use(bodyParser.json());
 
 var router = express.Router();
 
+
 var r = require('./lib/questHandler.js').createQuestHandler();
 r.on("onData", function() {
 	router.get("/question/:id", function(req, res) {
@@ -58,7 +59,6 @@ r.on("onData", function() {
 
 		try {
 			question = r.getQuestion(id);
-			console.log("In post: " +JSON.stringify(question));
 		}
 		catch (err){
 			res.status(400).send({"message" : "Bad URL - no question found on that URI"}); // Should be 404, but for this assignment we indicate a call to a question not found
@@ -72,12 +72,10 @@ r.on("onData", function() {
 			return;
 		}
 		else {
-			console.log(question.answer);
-			console.log(req.body.answer);
 			if(question.answer === req.body.answer) {
 				// fetch the nest question
 				var nextID = r.getNextQuestion(id).id;
-				var nextUrl = "http://localhost:8000/question/" +nextID;
+				var nextUrl = req.protocol +"://" +req.get('host') +"/question/" +nextID;
 				res.status(200).send({"message" : "Correct answer", "nextURL" : nextUrl});
 			}
 			else {
