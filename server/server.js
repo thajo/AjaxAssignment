@@ -55,34 +55,46 @@ r.on("onData", function() {
 		var id = req.params.id;
 		var question;
 
-
 		try {
 			question = r.getQuestion(id);
+			console.log(JSON.stringify(question));
 		}
 		catch (err){
-			res.status(400); // Should be 404, but for this assignment we indicate a call to a question not found
+			res.status(400).send({"message" : "Bad URL - no question found on that URI"}); // Should be 404, but for this assignment we indicate a call to a question not found
 			res.end();
 			return;
 		}
-		if(!req.body) {
-			res.status(400).send({"message" : "Missing the answer in json-format"});
+		// Check if user send correct json
+		if(!req.body.hasOwnProperty("answer")) {
+			res.status(400).send({"message" : "Missing correct JSON with answer key"});
 			res.end();
 			return;
 		}
 		else {
-			/*var mess = JSON.parse(req.body);
-			if(question.answer === mess.answer) {
-				// Should add function to get the next question
-				res.status(200).send({"nextURL" : "/question/" +id+1});
+			console.log(question.answer);
+			console.log(req.body.answer);
+			if(question.answer === req.body.answer) {
+				// fetch the nest question
+				var nextID = r.getNextQuestion(id).id;
+				var nextUrl = "http://localhost:8000/question/" +nextID;
+				res.status(200).send({"message" : "Correct answer", "nextURL" : nextUrl});
 			}
-			*/
+			else {
+				res.status(400).send({"message" : "Wrong answer"});
+			}
 		}
+		res.end();
 
 	});
 
 
 
 	router.get('*', function(req, res){
+  		res.status(404);
+  		res.end();
+	});
+
+	router.post('*', function(req, res){
   		res.status(404);
   		res.end();
 	});
