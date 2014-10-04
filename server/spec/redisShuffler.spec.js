@@ -8,15 +8,9 @@ describe("REDISSHUFFLER - Testing the Redis connection", function() {
 		var redis = require("redis");
 		var client = redis.createClient(6379, "127.0.0.1");
 
-		/*client.on("error", function() {
-			return state;
-		});*/
-
 		client.on("ready", function() {
 			state = true;
 		});
-
-
 
 		waitsFor(function() {
 			return state;

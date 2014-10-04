@@ -6,15 +6,14 @@
 
 (function(){
 	'use strict';
+
 	var fs = require('fs');
-
-
 
 	var readFile = function(url) {
 		if(typeof url === 'string' && url.endsWith('.json')) {
 			var data;
 			try {
-				// try to read the file here - Dp it syncronus
+				// try to read the file here - Do it syncronus
 				// encode it for returning a correct string
 				data = fs.readFileSync(url, {encoding: 'utf-8'});
 				return data;

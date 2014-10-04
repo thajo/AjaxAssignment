@@ -1,14 +1,4 @@
 // server.js
-
-// create a http server
-
-// listen for routes on question/:id
-// GET - Will get a question
-// POST - Will answer a question
-
-//var http = require('http');
-
-
 // call the packages we need
 var express    = require('express'); 		// call express
 var app        = express(); 				// define our app using express
@@ -29,22 +19,20 @@ r.on("onData", function() {
 		var question;
 		try {
 			question = JSON.stringify(r.getQuestion(id)); // must make a copy since we want to delete the answer
-			question = JSON.parse(question);
+			question = JSON.parse(question); // stringyfy the object and create a new variable to avoid copy properties
 		}
 		catch (err){
-			console.log(err);
 			res.status(400); // Should be 404, but for this assignment we indicate a call to a question not found
 			res.end();
 			return;
 		}
 
-		// Remove the answer for now
+		// Remove the answer for the response
 		delete question.answer;
 
 		// Send back the question
 		question.nextURL = "/answer/" +id;
-		question.message = "You got your question! Now send me the answer via HTTP POST to the nextURL";
-
+		question.message = "You got your question! Now send me the answer via HTTP POST to the nextURL s JSON";
 		res.send(question);
 	});
 
@@ -65,9 +53,9 @@ r.on("onData", function() {
 			res.end();
 			return;
 		}
-		// Check if user send correct json
+		// Check if user send correct property
 		if(!req.body.hasOwnProperty("answer")) {
-			res.status(400).send({"message" : "Missing correct JSON with answer key"});
+			res.status(400).send({"message" : "Not a valid JSON with a property named 'answer'"});
 			res.end();
 			return;
 		}
@@ -76,18 +64,17 @@ r.on("onData", function() {
 				// fetch the nest question
 				var nextID = r.getNextQuestion(id).id;
 				var nextUrl = req.protocol +"://" +req.get('host') +"/question/" +nextID;
-				res.status(200).send({"message" : "Correct answer", "nextURL" : nextUrl});
+				res.status(200).send({"message" : "Correct answer!", "nextURL" : nextUrl});
 			}
 			else {
-				res.status(400).send({"message" : "Wrong answer"});
+				res.status(400).send({"message" : "Wrong answer! :("});
 			}
 		}
 		res.end();
 
 	});
 
-
-
+	// catch other path
 	router.get('*', function(req, res){
   		res.status(404);
   		res.end();
@@ -101,9 +88,6 @@ r.on("onData", function() {
 	app.use('/', router);
 	app.listen(8000); console.log("Server listen on port 8000 in dev MODE");
 });
+// prepere the data befor start the server
 r.fetchData();
-
-
-// Using express for watching stuff
-
 

@@ -17,7 +17,6 @@
 	// Create an constructor to extends the EventEmitter functionallity
 	// Use this as an internal Object that will be return in a factory method
 	function QuestHandler() {
-		//l("Init the object");
 		this.questions = [];
 	}
 	util.inherits(QuestHandler, events.EventEmitter);
@@ -26,24 +25,16 @@
 	// checking that the create-method is return a correct instance
 	exports.QuestHandler = QuestHandler;
 
-
-
 	/** Methods **/
 
 	/*
 		This method is used to start fetching data
-		from the redis-server.
+		from the redis-server or file.
 		emits the event "onData" when the data is ready
 	*/
 	QuestHandler.prototype.fetchData = function() {
 		var currentObject = this;
 		redisShuffler.getData(function(data){
-
-			// this should be tested
-			/*if(!data) {
-				throw new Error("No data..yet");
-			}*/
-
 			currentObject.questions = data;
 			currentObject.emit("onData");
 		});
@@ -74,8 +65,7 @@
 	*/
 	QuestHandler.prototype.getQuestion = function(id) {
 		var len = this.questions.length;
-		//l(len);
-		// TODO refactor
+
 		if(len < 1) {
 			throw new Error("Don´t have any data yet");
 		}
@@ -89,7 +79,6 @@
 		}
 		throw new Error("Did call a question that doesn´t exists");
 	};
-
 
 	// exports the modeule
 	exports.createQuestHandler = function() {
