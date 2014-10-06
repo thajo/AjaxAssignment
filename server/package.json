@@ -1,5 +1,5 @@
 {
-  "name": "quiz-assignment",
+  "name": "AjaxAssignment",
   "version": "0.0.0",
   "main": "server.js",
   "description": "Assignment for the course Webbteknik I",
@@ -24,7 +24,6 @@
   "keywords": [],
   "devDependencies": {
     "grunt-contrib-jshint": "~0.7.0",
-    "grunt-contrib-nodeunit": "~0.2.0",
     "grunt-contrib-watch": "~0.5.0",
     "load-grunt-tasks": "~0.2.0",
     "time-grunt": "~0.2.0",
@@ -32,11 +31,10 @@
     "grunt-express-server": "^0.4.19",
     "grunt-jasmine-node": "^0.2.1",
     "jasmine-node": "^1.14.5",
-    "jasmine-reporters": "~1.0.0",
     "grunt-contrib-jasmine": "^0.8.0",
     "grunt-jasmine-node-coverage": "^0.1.11",
-    "request": "^2.44.0",
-    "body-parser": "^1.9.0"
+    "request": "^2.44.0"
+
   },
   "scripts": {
     "test": "grunt"
@@ -44,6 +42,7 @@
   "dependencies": {
     "redis": "^0.12.1",
     "grunt-jasmine-node-coverage": "^0.1.11",
-    "express": "4.x"
+    "express": "4.x",
+    "body-parser": "^1.9.0"
   }
 }
