@@ -7,4 +7,3 @@ before_install: npm install -g grunt-cli
 install: npm install
 before_script:
   - "npm i -g jasmine-node"
-  - grunt default
