@@ -118,7 +118,7 @@ describe("REDISSHUFFLER - Test to read a jasonfile with bad key-values", functio
 });
 */
 
-
+/*
 
 describe("REDISSHUFFLER - Testing the data we getting from Redis (cached data)", function() {
 
@@ -205,5 +205,5 @@ describe ("REDISSHUFFLER - Testing getting the data (no cache)", function() {
 
 	});
 });
-
+*/
 

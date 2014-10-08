@@ -1,5 +1,5 @@
 //apitester.spec.js
-/*"use strict";
+"use strict";
 
 
 var request = require('request');
@@ -7,7 +7,7 @@ var sh = require("./spechelper.js");
 var state = false;
 var base = "http://localhost:";
 var counter = 0;
-var nrOfTests = 7;
+var nrOfTests = 2;
 var cF;
 function checkAndClose(){
     counter++;
@@ -20,62 +20,63 @@ function checkAndClose(){
 describe("API tests", function(){
 
 
-    sh.startServer(function(closeFnk, port){
-       cF = closeFnk;
-       base  += port + "/";
-        state = true;
+    it("test", function(done){
+        sh.startServer(function(closeFnk, port){
+            expect(port).toBe(3000);
+            cF = closeFnk;
+            base  += port + "/";
+            state = true;
+            done();
+        });
 
     });
 
-    beforeEach(function(){
-        waitsFor(function() {
-            return state;
-        }, "Timeout on checking Redis connection", 2000);
 
-    });
 
-    it('Server should respond to /question/1', function() {
+    it('Server should respond to /question/1', function(done) {
         console.log("Base: " +base +'question/1');
         request.get(base +'question/1', function(err, response){
-            console.log(err);
+
+
             expect(response.statusCode).toBe(200);
-           checkAndClose();
+
+           //checkAndClose();
+            done();
+        });
+    });
+    it('Server should respond to /question/1', function(done) {
+        console.log("Base: " +base +'question/1');
+        request.get(base +'question/1', function(err, response){
+
+            expect(response.statusCode).toBe(200);
+            done();
         });
     });
 
-    it('Server should respond to /question/1', function() {
-        console.log("Base: " +base +'question/1');
-        request.get(base +'question/1', function(err, response){
-            console.log(err);
-            expect(response.statusCode).toBe(200);
-            checkAndClose();
-        });
-    });
-
-    it('Server should respond to /bad with 404', function() {
+    it('Server should respond to /bad with 404', function(done) {
         request.get(base +'bad', function(err, response){
             expect(response.statusCode).toBe(404);
-            checkAndClose();
+            done();
         });
     });
 
-    it('Server should respond to /question/1234567xxx with 404', function() {
+    it('Server should respond to /question/1234567xxx with 404', function(done) {
         request.get(base +'question/1234567xxx', function(err, response){
             expect(response.statusCode).toBe(400);
-            checkAndClose();
+            done();
         });
     });
 
-    it("When a GET is send to /answer/:id a 405 (bad method) should be returned", function() {
+    it("When a GET is send to /answer/:id a 405 (bad method) should be returned", function(done) {
         request.get(base +'answer/1', function(error, response, body){
 
             expect(response.statusCode).toBe(405);
-            checkAndClose();
+            done();
 
         });
     });
 
-    it("When wrong answer is submitted server should return 400 and a message", function() {
+    it("When wrong answer is submitted server should return 400 and a message", function(done) {
         request.post({
             url:     base + 'answer/1',
             body:    '{"answer" : "1"}',
@@ -84,11 +85,11 @@ describe("API tests", function(){
             }
         }, function(error, response, body){
             expect(response.statusCode).toBe(400);
-            checkAndClose();
+            done();
         });
     });
 
-    it("When correct answer is submitted we should get a 200 and a nextURL", function() {
+    it("When correct answer is submitted we should get a 200 and a nextURL", function(done) {
         request.post({
             url:     base + 'answer/1',
             body:    '{"answer" : "2"}',
@@ -101,10 +102,25 @@ describe("API tests", function(){
             expect(mess).toContain("Correct answer");
             var next = JSON.parse(body).nextURL;
             expect(next).toBeDefined();
-            checkAndClose();
+            done();
         });
     });
 
 
-});
+    // Stupid
+    it('close', function(done){
+        setInterval(function(){
+
+            cF();
+           // expect(true).toBeTruthy();
+            done();
+        }, 500);
+
+
+    });
+/*
+
 */
+
+});
+
