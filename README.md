@@ -1,5 +1,7 @@
 # AjaxAssignment
 
+[![Build Status](https://travis-ci.org/thajo/AjaxAssignment.svg?branch=master)](https://travis-ci.org/thajo/AjaxAssignment)
+
 ## Detta är ett repo innehållandes kod till en studentuppgift i kursen Webbteknik I
 
 Koden är skriven för att testa olika tekniker att skriva node moduler och är därför inte speciell konsekvent.
