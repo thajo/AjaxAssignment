@@ -4,4 +4,6 @@ node_js:
   - '0.8'
 before_install: npm install -g grunt-cli
 install: npm install
-before_script: grunt --gruntfile server/Gruntfile.js default
+before_script:
+  - "npm i -g jasmine-node"
+  - grunt default

@@ -1,0 +1,48 @@
+{
+  "name": "AjaxAssignment",
+  "version": "0.0.0",
+  "main": "server.js",
+  "description": "Assignment for the course Webbteknik I",
+  "homepage": "user/repo",
+  "bugs": "user/repo/issues",
+  "author": {
+    "name": "John Häggerud",
+    "email": "john.haggerud@lnu.se"
+  },
+  "repository": {
+    "type": "git",
+    "url": "user/repo"
+  },
+  "licenses": [
+    {
+      "type": "CC0"
+    }
+  ],
+  "files": [
+    ""
+  ],
+  "keywords": [],
+  "devDependencies": {
+    "grunt-contrib-jshint": "~0.7.0",
+    "grunt-contrib-watch": "~0.5.0",
+    "load-grunt-tasks": "~0.2.0",
+    "time-grunt": "~0.2.0",
+    "jshint-stylish": "~0.1.3",
+    "grunt-express-server": "^0.4.19",
+    "grunt-jasmine-node": "^0.2.1",
+    "jasmine-node": "^1.14.5",
+    "grunt-contrib-jasmine": "^0.8.0",
+    "grunt-jasmine-node-coverage": "^0.1.11",
+    "request": "^2.44.0"
+
+  },
+  "scripts": {
+    "test": "jasmine-node spec/*.spec.js"
+  },
+  "dependencies": {
+    "redis": "^0.12.1",
+    "grunt-jasmine-node-coverage": "^0.1.11",
+    "express": "4.x",
+    "body-parser": "^1.9.0"
+  }
+}
