@@ -36,12 +36,10 @@
     "request": "^2.44.0"
 
   },
-  "engines": {
-    "node": ">= 0.8"
-  },
   "scripts": {
-      "start": "node server.js",
-      "test": "jasmine-node spec/*.spec.js"
+      "start": "node server.js"
+      /*,
+      "test": "jasmine-node spec/*.spec.js"*/
 
   },
   "dependencies": {
