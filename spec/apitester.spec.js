@@ -1,5 +1,5 @@
 //apitester.spec.js
-"use strict";
+/*"use strict";
 
 
 var request = require('request');
@@ -107,25 +107,4 @@ describe("API tests", function(){
 
 
 });
-
-/*
-describe("APITESTER -- test calling the service", function(){
-
-    // Start server before testing and shut it down after
-
-
-    beforeEach(function() {
-
-
-
-        waitsFor(function() {
-            return state;
-        }, "Timeout on starting node app", 2000);
-    });
-
-    afterEach(function(){
-
-    });
 */
-/*
-    */
