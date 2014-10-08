@@ -29,3 +29,7 @@ node_modules
 
 #webstorm stuff
 .idea/
+
+#Cloud9
+.c9
+.c9revisions
