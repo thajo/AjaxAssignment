@@ -37,9 +37,8 @@
 
   },
   "scripts": {
-      "start": "node server.js"
-      /*,
-      "test": "jasmine-node spec/*.spec.js"*/
+      "start": "node server.js",
+      "test": "jasmine-node spec/*.spec.js"
 
   },
   "dependencies": {

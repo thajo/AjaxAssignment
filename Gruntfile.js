@@ -41,7 +41,7 @@ module.exports = function (grunt) {
         extensions: 'js',
         specNameMatcher: 'spec',
         coffee: true,
-        verbose: false,
+        verbose: true,
         noStack: false,
         jUnit: {
           report: false,
@@ -77,7 +77,7 @@ module.exports = function (grunt) {
       },
       dev: {
         options: {
-          script: 'server.js'
+          script: 'app.js'
         }
       }
     }
