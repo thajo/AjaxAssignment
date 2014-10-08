@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 // this will let us get the data from a POST
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
+app.set('port', process.env.PORT || 3000);
 var router = express.Router();
 
 
@@ -86,7 +86,7 @@ r.on("onData", function() {
 	});
 
 	app.use('/', router);
-	app.listen(3000); console.log("Server listen on port 3000 in dev MODE");
+	app.listen(3000); console.log("Server listen on port " + app.get('port') +" in dev MODE");
 });
 // prepere the data befor start the server
 r.fetchData();

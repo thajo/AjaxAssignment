@@ -37,7 +37,8 @@
 
   },
   "scripts": {
-    "test": "jasmine-node spec/*.spec.js"
+    "test": "jasmine-node spec/*.spec.js",
+    "start": "node server.js"
   },
   "dependencies": {
     "redis": "^0.12.1",
