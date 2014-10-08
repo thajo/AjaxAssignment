@@ -86,7 +86,7 @@ r.on("onData", function() {
 	});
 
 	app.use('/', router);
-	app.listen(8000); console.log("Server listen on port 8000 in dev MODE");
+	app.listen(3000); console.log("Server listen on port 3000 in dev MODE");
 });
 // prepere the data befor start the server
 r.fetchData();

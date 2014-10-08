@@ -2,7 +2,7 @@
 
 describe("APITESTER -- test calling the service", function(){
 	var request = require('request');
-	var base = "http://localhost:8000/";
+	var base = "http://localhost:3000/";
 
 	it('Server should respond to /question/1', function() {
     	request.get(base +'question/1', function(err, response){
