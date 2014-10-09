@@ -12,6 +12,8 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-compress');
   grunt.loadNpmTasks('grunt-contrib-copy');
 
+    grunt.loadNpmTasks('grunt-vagrant-commands');
+
   // Project configuration.
     grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -65,8 +67,21 @@ module.exports = function (grunt) {
             files: [
                 // includes files within path and its sub-directories
                 {expand: true, src: ['lib/**'], dest: 'build/'},
-                {expand: true, src: ['app.js'], dest: 'build/', filter: 'isFile'},
-                {expand: true, src: ['data/**'], dest: 'build/'}
+                {expand: true, src: ['lib/**'], dest: '../AjaxAssignment-vagrant-devserver/serverfiles/app'},
+
+                {expand: true, src: ['data/**'], dest: 'build/'},
+                {expand: true, src: ['data/**'], dest: '../AjaxAssignment-vagrant-devserver/serverfiles/app'},
+
+                {expand: true, src: ['app.js', 'package.json'], dest: 'build/', filter: 'isFile'},
+                {expand: true, src: ['app.js', 'package.json'], dest: '../AjaxAssignment-vagrant-devserver/serverfiles/app', filter: 'isFile'}
+            ]
+        }
+    },
+    vagrant_commands: {
+        vvv: {
+            commands: [
+                ['halt'],
+                ['up', '--provision']
             ]
         }
     }
@@ -80,5 +95,7 @@ module.exports = function (grunt) {
   // Default task.
   grunt.registerTask('default', ['jshint', 'jasmine_node']);
   grunt.registerTask('build', ['jshint', 'compress', 'copy']);
+  grunt.registerTask('server_up', ['copy', 'vagrant_commands']);
+  grunt.registerTask('server_down', ['vagrant_commands']);
 
 };

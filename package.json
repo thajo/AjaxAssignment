@@ -35,7 +35,9 @@
     "grunt-jasmine-node-coverage": "0.1.11",
     "request": "^2.44.0",
     "grunt-contrib-compress": "^0.12.0",
-    "grunt-contrib-copy": "^0.6.0"
+    "grunt-contrib-copy": "^0.6.0",
+    "grunt-vagrantup": "^0.2.0",
+    "grunt-vagrant-commands": "0.0.3"
   },
   "scripts": {
     "test": "jasmine-node spec/*.spec.js --verbose"

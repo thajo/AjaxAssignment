@@ -20,6 +20,9 @@ coverage
 #build
 build
 
+#redis dump
+*.rdp
+
 #archive
 archive
 

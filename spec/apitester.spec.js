@@ -31,8 +31,6 @@ describe("API tests", function(){
 
     });
 
-
-
     it('Server should respond to /question/1', function(done) {
         request.get(base +'question/1', function(err, response){
             expect(response.statusCode).toBe(200);
