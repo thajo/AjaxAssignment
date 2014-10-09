@@ -3,11 +3,8 @@ node_js:
   - "0.10"
 services:
   - redis-server
-before_install:
-  - npm install -g grunt-cli
-  - npm install -g istanbul
+before_install: npm install -g grunt-cli
 install: npm install
 before_script: grunt default
-script: "npm run-script ci"
 notifications:
   email: false

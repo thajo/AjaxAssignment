@@ -86,6 +86,9 @@ module.exports = function (grunt) {
             // an error, to prevent CI builds from failing unnecessarily (e.g. if
             // coveralls.io is down).
             force: false
+        },
+        grunt_coveralls_real_coverage: {
+            src: 'coverage/lcov.info'
         }
 
     }

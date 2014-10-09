@@ -3,15 +3,15 @@
   "version": "0.0.0",
   "main": "server.js",
   "description": "Assignment for the course Webbteknik I",
-  "homepage": "user/repo",
-  "bugs": "user/repo/issues",
+  "homepage": "https://github.com/thajo/AjaxAssignment",
+  "bugs": "https://github.com/thajo/AjaxAssignment/issues",
   "author": {
     "name": "John Häggerud",
     "email": "john.haggerud@lnu.se"
   },
   "repository": {
     "type": "git",
-    "url": "user/repo"
+    "url": "https://github.com/thajo/AjaxAssignment"
   },
   "licenses": [
     {
@@ -41,8 +41,7 @@
     "grunt-coveralls": "^1.0.0"
   },
   "scripts": {
-    "test": "jasmine-node spec/*.spec.js --verbose",
-    "ci": "./node_modules/.bin/istanbul cover -- grunt coveralls"
+    "test": "jasmine-node spec/*.spec.js --verbose"
   },
   "dependencies": {
     "redis": "0.12.1",
