@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/thajo/AjaxAssignment.svg?branch=master)](https://travis-ci.org/thajo/AjaxAssignment)
 [![Coverage Status](https://coveralls.io/repos/thajo/AjaxAssignment/badge.png)](https://coveralls.io/r/thajo/AjaxAssignment)
+[![Code Climate](https://codeclimate.com/github/thajo/AjaxAssignment/badges/gpa.svg)](https://codeclimate.com/github/thajo/AjaxAssignment)
 
 ## Detta är ett repo innehållandes kod till en studentuppgift i kursen Webbteknik I
 

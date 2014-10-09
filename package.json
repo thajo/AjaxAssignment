@@ -1,8 +1,8 @@
 {
   "name": "AjaxAssignment",
-  "version": "0.0.0",
-  "main": "server.js",
-  "description": "Assignment for the course Webbteknik I",
+  "version": "0.5.0",
+  "main": "app.js",
+  "description": "Assignment for Webbteknik I",
   "homepage": "https://github.com/thajo/AjaxAssignment",
   "bugs": "https://github.com/thajo/AjaxAssignment/issues",
   "author": {
@@ -36,8 +36,6 @@
     "request": "^2.44.0",
     "grunt-contrib-compress": "^0.12.0",
     "grunt-contrib-copy": "^0.6.0",
-    "grunt-vagrantup": "^0.2.0",
-    "grunt-vagrant-commands": "0.0.3",
     "grunt-coveralls": "^1.0.0"
   },
   "scripts": {
