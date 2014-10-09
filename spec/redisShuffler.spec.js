@@ -29,36 +29,6 @@ describe("REDISSHUFFLER - Testing the Redis connection", function() {
 
 
 
-describe("REDISSHUFFLER - Test the module with bad path call to datafile", function() {
-	var r = require('../lib/redisShuffler.js');
-	var data;
-	var redis = require("redis");
-	var client = redis.createClient(6379, "127.0.0.1");
-	var HNAME = "questions";
-
-
-	beforeEach(function() {
-		client.del(HNAME);
-		//console.log("CALL ME");
-		r.getData(function(res) {
-			data = res;
-		}, "path/to/hell");
-
-
-		// the test waits for teh returnstatement below to be true
-		// after 2000 ms we got an timeout
-		waitsFor(function() {
-			return data !== undefined;
-		}, 'Timeout getting data', 2000);
-	});
-	it("Should return false if we provide a bad path", function() {
-		expect(data).toBeFalsy();
-        client.quit();
-	});
-});
-
-
-
 
 
 
@@ -210,4 +180,36 @@ describe ("REDISSHUFFLER - Testing getting the data (no cache)", function() {
  client.quit();
  });
  });
+ */
+
+/*
+
+ describe("REDISSHUFFLER - Test the module with bad path call to datafile", function() {
+ var r = require('../lib/redisShuffler.js');
+ var data;
+ var redis = require("redis");
+ var client = redis.createClient(6379, "127.0.0.1");
+ var HNAME = "questions";
+
+
+ beforeEach(function() {
+ client.del(HNAME);
+ //console.log("CALL ME");
+ r.getData(function(res) {
+ data = res;
+ }, "path/to/hell");
+
+
+ // the test waits for teh returnstatement below to be true
+ // after 2000 ms we got an timeout
+ waitsFor(function() {
+ return data !== undefined;
+ }, 'Timeout getting data', 2000);
+ });
+ it("Should return false if we provide a bad path", function() {
+ expect(data).toBeFalsy();
+ client.quit();
+ });
+ });
+
  */
