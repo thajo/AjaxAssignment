@@ -42,7 +42,7 @@
   },
   "scripts": {
     "test": "jasmine-node spec/*.spec.js --verbose",
-    "ci": "istanbul cover -- grunt grunt coveralls"
+    "ci": "./node_modules/.bin/istanbul cover -- grunt coveralls"
   },
   "dependencies": {
     "redis": "0.12.1",
