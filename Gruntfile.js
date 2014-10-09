@@ -11,8 +11,8 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-compress');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-coveralls');
 
-    grunt.loadNpmTasks('grunt-vagrant-commands');
 
   // Project configuration.
     grunt.initConfig({
@@ -77,16 +77,18 @@ module.exports = function (grunt) {
             ]
         }
     },
-    vagrant_commands: {
-        vvv: {
-            commands: [
-                ['halt'],
-                ['up', '--provision']
-            ]
+    coveralls: {
+        options: {
+            // LCOV coverage file relevant to every target
+            src: 'coverage/lcov.info',
+
+            // When true, grunt-coveralls will only print a warning rather than
+            // an error, to prevent CI builds from failing unnecessarily (e.g. if
+            // coveralls.io is down). Optional, defaults to false.
+            force: false
         }
+
     }
-
-
 
   });
 
@@ -94,7 +96,7 @@ module.exports = function (grunt) {
 
   // Default task.
   grunt.registerTask('default', ['jshint', 'jasmine_node']);
-  grunt.registerTask('build', ['jshint', 'compress', 'copy']);
+  grunt.registerTask('build', ['jshint', 'compress', 'copy', 'coveralls']);
   grunt.registerTask('server_up', ['copy', 'vagrant_commands']);
   grunt.registerTask('server_down', ['vagrant_commands']);
 
