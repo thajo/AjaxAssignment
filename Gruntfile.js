@@ -95,8 +95,8 @@ module.exports = function (grunt) {
 
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'jasmine_node']);
-  grunt.registerTask('build', ['jshint', 'compress', 'copy', 'coveralls']);
+  grunt.registerTask('default', ['jshint', 'jasmine_node', 'coveralls']);
+  grunt.registerTask('build', ['jshint', 'compress', 'copy']);
   grunt.registerTask('server_up', ['copy', 'vagrant_commands']);
   grunt.registerTask('server_down', ['vagrant_commands']);
 
