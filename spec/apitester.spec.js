@@ -34,20 +34,14 @@ describe("API tests", function(){
 
 
     it('Server should respond to /question/1', function(done) {
-        console.log("Base: " +base +'question/1');
         request.get(base +'question/1', function(err, response){
-
-
             expect(response.statusCode).toBe(200);
-
-           //checkAndClose();
             done();
         });
     });
-    it('Server should respond to /question/1', function(done) {
-        console.log("Base: " +base +'question/1');
-        request.get(base +'question/1', function(err, response){
 
+    it('Server should respond to /question/1', function(done) {
+         request.get(base +'question/1', function(err, response){
             expect(response.statusCode).toBe(200);
             done();
         });
