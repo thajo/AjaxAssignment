@@ -6,5 +6,6 @@ services:
 before_install: npm install -g grunt-cli
 install: npm install
 before_script: grunt default
+script: "npm run-script ci"
 notifications:
   email: false

@@ -41,7 +41,8 @@
     "grunt-coveralls": "^1.0.0"
   },
   "scripts": {
-    "test": "jasmine-node spec/*.spec.js --verbose"
+    "test": "jasmine-node spec/*.spec.js --verbose",
+    "ci": "istanbul cover -- grunt grunt coveralls"
   },
   "dependencies": {
     "redis": "0.12.1",
