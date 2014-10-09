@@ -5,7 +5,7 @@ services:
   - redis-server
 before_install:
   - npm install -g grunt-cli
-  - npm install -g coveralls
+  - npm install -g istanbul
 install: npm install
 before_script: grunt default
 script: "npm run-script ci"
