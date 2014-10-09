@@ -3,19 +3,20 @@
 module.exports = function (grunt) {
   // Show elapsed time at the end
   require('time-grunt')(grunt);
+
+
   // Load all grunt tasks
-  require('load-grunt-tasks')(grunt);
-  // Load the plugin that starts a node server
-  grunt.loadNpmTasks('grunt-express-server');
   grunt.loadNpmTasks('grunt-jasmine-node');
   grunt.loadNpmTasks('grunt-jasmine-node-coverage');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-compress');
+  grunt.loadNpmTasks('grunt-contrib-copy');
 
   // Project configuration.
-  grunt.initConfig({
+    grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    //nodeunit: {
-    //  files: ['test/**/*_test.js']
-    //},
+
+    // Adding the jshint task
     jshint: {
       options: {
         jshintrc: '.jshintrc',
@@ -28,9 +29,12 @@ module.exports = function (grunt) {
         src: ['lib/**/*.js']
       }
     },
+
+    // Adding the jasmine-node task for test and coverage
     jasmine_node: {
       coverage: { //https://github.com/paazmaya/grunt-jasmine-node-coverage/tree/multi-grunting#optionsspecfolders
-        excludes: ['lib/l.js']
+        excludes: ["spec"], // dont coverage on the test-files
+        verbose: true
       },
       options: {
         specFolders:['spec/'],
@@ -40,52 +44,41 @@ module.exports = function (grunt) {
         matchall: false,
         extensions: 'js',
         specNameMatcher: 'spec',
-        coffee: true,
         verbose: true,
-        noStack: false,
-        jUnit: {
-          report: false,
-          savePath : "./build/reports/jasmine/",
-          useDotNotation: true,
-          consolidate: true
-      },
-      growl: false
-      }
-      //,
-      //all: ['spec/'] // will be merged with the specFolders option and the projectRoot
-    },
-    watch: {
-      gruntfile: {
-        files: '<%= jshint.gruntfile.src %>',
-        tasks: ['jshint:gruntfile']
-      },
-      lib: {
-        files: '<%= jshint.lib.src %>',
-        tasks: ['jshint:lib']
-      },
-      test: {
-        files: ['spec/*.spec.js'],
-        tasks: ['jasmine_node'],
-        options: {
-          nospawn: true
-        }
+        noStack: false
       }
     },
-    express: {
-      options: {
-        // Override defaults here
-      },
-      dev: {
-        options: {
-          script: 'app.js'
+
+    compress: {
+        main: {
+            options: {
+                archive: 'archive/release-' +(new Date()).toISOString() +'.zip'
+            },
+            files: [
+                {src: ['lib/**'], dest: 'archive/'} // includes files in path and its subdirs
+            ]
         }
-      }
+    },
+
+    copy: {
+        main: {
+            files: [
+                // includes files within path and its sub-directories
+                {expand: true, src: ['lib/**'], dest: 'build/'},
+                {expand: true, src: ['app.js'], dest: 'build/', filter: 'isFile'},
+                {expand: true, src: ['data/**'], dest: 'build/'}
+            ]
+        }
     }
-    });
+
+
+
+  });
 
 
 
   // Default task.
   grunt.registerTask('default', ['jshint', 'jasmine_node']);
+  grunt.registerTask('build', ['jshint', 'compress', 'copy']);
 
 };
