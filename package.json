@@ -37,7 +37,7 @@
 
   },
   "scripts": {
-      "test": "jasmine-node spec/*.spec.js"
+      "test": "jasmine-node spec/*.spec.js --verbose"
   },
   "dependencies": {
     "redis": "0.12.1",
