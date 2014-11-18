@@ -59,7 +59,7 @@ module.exports = function (grunt) {
                 archive: 'archive/release-' +(new Date()).toISOString() +'.zip'
             },
             files: [
-                {src: ['lib/**'], dest: 'archive/'} // includes files in path and its subdirs
+                {src: ['build/**'], dest: 'archive/'} // includes files in path and its subdirs
             ]
         }
     },
@@ -101,7 +101,7 @@ module.exports = function (grunt) {
 
   // Default task.
   grunt.registerTask('default', ['jshint', 'jasmine_node']);
-  grunt.registerTask('build', ['jshint', 'compress', 'copy']);
+  grunt.registerTask('build', ['jshint', 'copy', 'compress']);
   grunt.registerTask('server_up', ['copy', 'vagrant_commands']);
   grunt.registerTask('server_down', ['vagrant_commands']);
   grunt.registerTask('deploy', []);
