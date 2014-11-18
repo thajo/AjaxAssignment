@@ -12,7 +12,7 @@ Koden är skriven för att testa olika tekniker att skriva node moduler och är 
 
 * Installera redis server (redis.io) - Se till att den är startad
 * Se till att ha grunt installerat (npm install grunt --save-dev)
-* Kör ´´npm install´´ i mappen /server
+* Kör ´´npm install´´ i root-mappen
 * Kör tester och code coverage med ´´grunt default´´
 * Testerna kan också testas med npm test (körs av travis CI)
 * grunt build - en task som skapar en arkivfil och flyttar över filer för "pre-production"
