@@ -1,6 +1,7 @@
 "use strict";
 
 var app = require("./lib/server.js");
-app.startApp(function(){
-    console.log("Got callback");
+
+app.startApp(function() {
+    console.log("Server app i running...");
 });
