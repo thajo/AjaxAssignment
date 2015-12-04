@@ -17,6 +17,13 @@ Koden är skriven för att testa olika tekniker att skriva node moduler och är 
 * Testerna kan också testas med npm test (körs av travis CI)
 * grunt build - en task som skapar en arkivfil och flyttar över filer för "pre-production"
 
+## Ändringar i data.json
+Då redis-server cachar frågor behöver man gå igenom några steg för att förändrningar ska synas.
+* Gör dina ändringar i data.json
+* Kör ´redis-cli´ 
+* Kör kommandot ´DEL questions´
+* Lämna redis-cli (ctrl+c)
+* Starta om app.js
 
 ### Postman
 Det finns en påbörjad lista med API kommandon för chrome-tillägget POSTMAN.
