@@ -6,11 +6,11 @@
 
 ## Detta är ett repo innehållandes kod till en studentuppgift i kursen Webbteknik I
 
-Koden är skriven för att testa olika tekniker att skriva node moduler och är därför inte speciell konsekvent.
+Koden är skriven för att testa runt bland lit eolika tekniker och är därför inte speciellt konsekvent.
 
 ## Installation
-* Installera node.js samt npm
-* Installera redis server (redis.io) - Se till att den är startad
+* Installera node.js samt npm (node package manager)
+* Installera redis server (redis.io) - Se till att den är startad (är egentligen inget appen vinner på men det var kul att testa)
 * Se till att ha grunt installerat (npm install grunt --save-dev) samt grunt-cli (npm install grunt-cli -g)
 * Kör ´npm install´´ i root-mappen
 * Kör tester och code coverage med ´grunt default´´
